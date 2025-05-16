@@ -65,7 +65,7 @@
       }
     ],
     "imageResize": true,
-    "uniqCompNum": 286,
+    "uniqCompNum": 287,
     "versionPublish": "6.0.1",
     "screenshot": "screenshot.png",
     "favicon": "@PROJECT_PATH@/assets/images/01-256.ico",
@@ -548,6 +548,93 @@
           "_isUserblock": true,
           "_sourceTheme": "simpleamp",
           "_cid": "s6tcVPRqZS",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {}
+        },
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 10px)",
+            "padding-bottom": "(@paddingBottom * 10px)",
+            "& when (@bg-type = 'color')": {
+              "background-color": "@bg-value"
+            },
+            "& when (@bg-type = 'image')": {
+              "background-image": "url(@bg-value)",
+              ".mbr-overlay": {
+                "background-color": "@overlayColor",
+                "opacity": "@overlayOpacity"
+              }
+            },
+            "@media (min-width: 768px)": {
+              ".container-fluid": {
+                "padding": "0"
+              }
+            },
+            ".mbr-row when (@fullWidth)": {
+              "margin": "0"
+            },
+            "& when (@showSubtext)": {
+              ".subtext": {
+                "color": "@accentColor",
+                "margin-bottom": "15px",
+                "background-color": "lighten(@accentColor, 33%)",
+                "line-height": "21px",
+                "padding": "8px 20px",
+                "display": "inline-block"
+              }
+            },
+            "& when (@showDivider) and (@showTitle)": {
+              ".divider": {
+                "width": "(@divider * 1px)",
+                "background-color": "@accentColor"
+              }
+            },
+            "& when (@fullWidth)": {
+              ".mbr-row": {
+                "margin": "0"
+              },
+              ".image": {
+                "width": "50vw",
+                "padding": "0",
+                "height": "(@imgHeight * 1vh)"
+              },
+              "& when not (@reverse)": {
+                ".title__block": {
+                  "padding": "50px 0 50px ~'calc(30% - 100px)'"
+                }
+              },
+              "& when (@reverse)": {
+                ".title__block": {
+                  "padding": "50px ~'calc(30% - 100px)' 50px 0"
+                }
+              }
+            },
+            "& when not (@fullWidth)": {
+              ".title__block": {
+                "padding": "50px 0"
+              },
+              ".image": {
+                "width": "100%",
+                "height": "(@imgHeight * 1vh)"
+              }
+            },
+            "@media (max-width: 768px)": {
+              ".image": {
+                "display": "none"
+              },
+              ".text__block": {
+                "padding": "0"
+              }
+            }
+          },
+          "_name": "header3",
+          "_sourceTheme": "innovationamp",
+          "_customHTML": "<section class=\"header3\" group=\"Headers\" plugins=\"amp-main\">\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n    <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"10\" step=\"1\" value=\"0\">\n    <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"10\" step=\"1\" value=\"0\">\n    <!--  -->\n        <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\" checked>\n        <input type=\"checkbox\" title=\"Reverse Content\" name=\"reverse\">\n        <header>Text</header>\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtext\" name=\"showSubtext\" checked>\n         <input type=\"checkbox\" title=\"Show Text\" name=\"showText\" checked>\n        <input type=\"checkbox\" title=\"Show Button\" name=\"showButtons\">\n        <select name=\"alignContent\" title=\"Align Content\">\n            <option value=\"1\" selected>Left</option>\n            <option value=\"2\">Center</option>\n            <option value=\"3\">Right</option>\n        </select>\n        <input type=\"color\" title=\"Accent Color\" name=\"accentColor\" value=\"#fa584d\" condition=\"(showTitle && showDivider) || showSubtext\">\n        <input type=\"checkbox\" title=\"Show Divider\" name=\"showDivider\" condition=\"showTitle\" checked>\n        <input type=\"range\" inline title=\"Divider Width\" name=\"divider\" min=\"5\" max=\"250\" step=\"5\" value=\"30\" condition=\"showDivider && showTitle\">\n        <input type=\"range\" inline title=\"Image Height(vh)\" name=\"imgHeight\" min=\"30\" max=\"100\" step=\"1\" value=\"60\">\n        <!--  -->\n        <header>Background</header>\n        <fieldset type=\"background\" name=\"bg\" required>\n            <input type=\"color\" title=\"Background Color\" value=\"#ffffff\" selected>\n            <input type=\"image\" title=\"Background Image\" value=\"../_images/ect24.jpg\">\n        </fieldset>\n        <!--  -->\n        <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" condition=\"bg.type !== 'color'\" checked>\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#3b7eff\" condition=\"overlay && bg.type == 'image'\">\n        <input type=\"range\" inline title=\"Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.3\" condition=\"overlay && bg.type == 'image'\">\n</mbr-parameters>\n    \n    <div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type !== 'color'\"></div>\n<div mbr-class=\"{'container-fluid' : fullWidth, 'container' : !fullWidth}\">\n    <div class=\"mbr-row\" mbr-class=\"{'mbr-row-reverse' : reverse}\">\n    <div class=\"mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-6 mbr-flex text__block align-left\" mbr-class=\"{'align-center' : alignContent == 2, 'align-right' : alignContent == 3}\">\n        <div class=\"title__block mbr-m-auto\">\n            <p class=\"subtext rounded__10 mbr-fonts-style mbr-black\" mbr-theme-style=\"display-4\" mbr-if=\"showSubtext\" data-app-selector=\".subtext\">Estudio de mercado</p>\n            <h3 class=\"mbr-section-title mbr-bold mbr-fonts-style mbr-black\" mbr-theme-style=\"display-2\" mbr-if=\"showTitle\" data-app-selector=\".mbr-section-title, .divider\">Visionarios de la tecnología Colombiana</h3>\n            <span class=\"divider\" mbr-if=\"showDivider\"></span>\n            <p class=\"mbr-text mbr-fonts-style\" mbr-class=\"{'mbr-pt-1' : !showDivider}\" mbr-theme-style=\"display-7\" mbr-if=\"showText\" data-app-selector=\".mbr-text\"><br>\"En los últimos años, las exportaciones de servicios de diseño de software desde Colombia han mostrado un crecimiento sostenido, impulsado por el fortalecimiento del talento digital y la demanda global de soluciones tecnológicas. México se ha consolidado como uno de los principales destinos, representando el 11% del total exportado, gracias a su mercado en expansión y su creciente digitalización. Esta tendencia representa una gran oportunidad para las empresas colombianas, que cuentan con costos competitivos, alta calidad en desarrollo de software y cercanía cultural, lo que facilita la entrada y posicionamiento en el mercado mexicano.\"</p>\n            <div class=\"mbr-section-btn mbr-pt-4\" mbr-buttons data-toolbar=\"-mbrBtnMove\" mbr-theme-style=\"display-4\" mbr-if=\"showButtons\"><a class=\"btn btn-md btn-secondary\" href=\"#\" data-app-placeholder=\"Type Text\">\n            <span class=\"mbrib-right mbr-iconfont mbr-iconfont-btn\"></span>\n            <span class=\"btn__hover\">Read More</span></a></div>\n        </div>\n    </div>\n                <div class=\"image mbr-col-sm-12 mbr-col-md-6 mbr-col-lg-6\">\n                    <amp-img src=\"@PROJECT_PATH@/assets/images/ect23.jpg\" alt=\"image\" height=\"2320.8\" width=\"3481.2000000000003\" layout=\"responsive\" class=\"mobirise-loader\">\n                        <div placeholder class=\"placeholder\"></div>\n                       <img src=\"@PROJECT_PATH@/assets/images/ect23.jpg\" class=\"mbr-temp\">\n                    </amp-img>\n                </div>\n</div>\n</div>\n</section>",
+          "_cid": "uLoYTsxpJ4",
+          "_anchor": "header3-7y",
           "_protectedParams": [],
           "_global": false,
           "_once": false,
